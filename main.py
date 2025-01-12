@@ -1,8 +1,14 @@
 def main():
     text = get_book_text("books/frankenstein.txt")
-    print(text)
-    print(f"{count_words(text)} words found in the document")
-    print(f"each character in the document: {count_characters(text)}")
+    print("--- Begin report of books/frankenstein.txt ---")
+    words = count_words(text)
+    print(f"{words} words found in the document")
+    chars = dict()
+    chars = count_characters(text)
+    sorted_chars = dict(sorted(chars.items(), key=lambda item: item[1], reverse=True))
+    for char in sorted_chars:
+        if char.isalpha() == True:
+            print(f"The {char} character was found {sorted_chars[char]} times")
 
 def get_book_text(path):
     with open(path) as f:
